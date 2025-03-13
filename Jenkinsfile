@@ -13,8 +13,20 @@ pipeline {
         }
         stage('Test') {
             steps {
-                sh './output'  // Adjust this if it's a test command
+                sh './output'  // Adjust this if it's a test command        
+        stage('Deploy') {
+            steps {
+                echo 'Deploying application...'
             }
+        }
+    }
+
+    post {
+        success {
+            echo 'Pipeline completed successfully.'
+        }
+        failure {
+            echo 'Pipeline failed.'
         }
     }
 }
