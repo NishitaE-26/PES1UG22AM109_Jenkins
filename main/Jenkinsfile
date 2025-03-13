@@ -2,30 +2,37 @@ pipeline {
     agent any
 
     stages {
+        stage('Checkout') {
+            steps {
+                git 'https://github.com/NishitaE-26/PES1UG22AM109_Jenkins'
+            }
+        }
+
         stage('Build') {
             steps {
-                // Compile hello.cpp
                 sh 'g++ -o output hello.cpp'
             }
         }
 
         stage('Test') {
             steps {
-                // Execute the compiled output
-                sh './output'
+                sh './output'  // Run the compiled program (if applicable)
             }
         }
 
         stage('Deploy') {
             steps {
-                echo 'Deployment stage (not actually deploying anything in this example)'
+                echo 'Deploying application...'
             }
         }
     }
 
     post {
+        success {
+            echo 'Pipeline completed successfully.'
+        }
         failure {
-            echo 'Pipeline failed'
+            echo 'Pipeline failed.'
         }
     }
 }
