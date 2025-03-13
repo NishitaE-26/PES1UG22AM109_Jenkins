@@ -4,12 +4,14 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                sh 'g++ -o output YOUR_SRN-1/main.cpp'
+                // Compile hello.cpp
+                sh 'g++ -o output hello.cpp'
             }
         }
 
         stage('Test') {
             steps {
+                // Execute the compiled output
                 sh './output'
             }
         }
